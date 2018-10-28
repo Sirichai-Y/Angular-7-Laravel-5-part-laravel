@@ -1,9 +1,9 @@
 # การติดตั้งและใช้งาน Project
 
-### 1. แก้ไขชื่อไฟล์ .env.example เป็น .env
-### 2. เปิด Command Line ในโฟลเดอร์โปรเจคเรา
-### 3. รันคำสั่ง composer install
-### 4. รันคำสั่ง php artisan key:generate
+1. แก้ไขชื่อไฟล์ .env.example เป็น .env
+2. เปิด Command Line ในโฟลเดอร์โปรเจคเรา
+3. รันคำสั่ง composer install
+4. รันคำสั่ง php artisan key:generate
 
 
 ## Project Guide
