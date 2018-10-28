@@ -15,8 +15,8 @@ class CreateCommentsTable extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('comment_text');
-            $table->integer('post_id');
+            $table->string('comment_text'); // เพิ่ม column ชื่อ comment_text ใน Database
+            $table->integer('post_id'); // เพิ่ม column ชื่อ post_id ใน Database
             $table->timestamps();
         });
     }

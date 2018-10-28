@@ -15,7 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('post_text');
+            $table->string('post_text'); // เพิ่ม column ชื่อ post_text ใน Database
             $table->timestamps();
         });
     }
