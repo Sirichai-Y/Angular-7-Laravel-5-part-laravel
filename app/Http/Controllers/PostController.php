@@ -23,13 +23,11 @@ class PostController extends Controller
     }
     
     public function read(Request $request) { // ฟังก์ชันอ่าน Post ทั้งหมด
-        $data = [ // ประกาศตัวแปรชื่อ data เป็น array 2 มิติ
-            'allPost' => [] // มีข้อมูลในตำแหน่งที่ชื่อ allPost เป็น empty array
-        ];
+        $data = []; // ประกาศตัวแปรชื่อ data เป็น array
 
         $posts = Post::all(); // คำสั่ง all คือ เรียกข้อมูลทั้งหมดใน table ที่เชื่อมกับ model ของเรา
         foreach($posts as $post){ // คำสั่ง foreach เพื่อวนลูปโดย post มีค่าเท่ากับข้อมูลแต่ละตัวใน posts ในแต่ละรอบ
-            $data['allPost'][] = [ // ให้ข้อมูลแต่ละตัวในตำแหน่งชื่อ allPost มีค่าตามด้านล่าง
+            $data[] = [ // ให้ข้อมูลแต่ละตัวมีค่าตามด้านล่าง
                 'id' => $post->id, // ข้อมูลชื่อ id เท่ากับข้อมูล id ของ post
                 'post' => $post->post_text, // ข้อมูลชื่อ post เท่ากับข้อมูล post_text ของ post
                 'comment' => Comment::select('id','comment_text')->where('post_id', $post->id)->get()
