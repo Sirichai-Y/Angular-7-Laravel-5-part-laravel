@@ -19,7 +19,7 @@ class PostController extends Controller
             'post_text' => $validatedData['post'], // บันทึกข้อมูลชื่อ post ที่ผ่านการ validate แล้วใน column ชื่อ post_text
         ]);
 
-        return response()->json($post); // ส่งข้อความในรูปแบบ JSON
+        return response()->json($post); // ส่งข้อมูลชื่อ post ในรูปแบบ JSON
     }
     
     public function read(Request $request) { // ฟังก์ชันอ่าน Post ทั้งหมด
