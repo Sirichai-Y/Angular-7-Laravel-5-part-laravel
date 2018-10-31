@@ -19,7 +19,7 @@ class PostController extends Controller
             'post_text' => $validatedData['post'], // บันทึกข้อมูลชื่อ post ที่ผ่านการ validate แล้วใน column ชื่อ post_text
         ]);
 
-        return response()->json('Post created!'); // ส่งข้อความในรูปแบบ JSON
+        return response()->json($post); // ส่งข้อความในรูปแบบ JSON
     }
     
     public function read(Request $request) { // ฟังก์ชันอ่าน Post ทั้งหมด
@@ -52,13 +52,13 @@ class PostController extends Controller
             'post_text' => $validatedData['post']
         ]);
 
-        return response()->json('Post edited!');
+        return response()->json($post);
     }
 
     public function delete($id) { // ฟังก์ชันลบ Post ส่วน $id คือ ข้อมูลทาง url
         $post = Post::where('id',$id)->delete(); // คำสั่ง delete คือ ลบข้อมูลออกจาก table ที่เชื่อมต่อกับ model ของเรา
         $comment = Comment::where('post_id',$id)->delete(); 
 
-        return response()->json('Post deleted!');
+        return response()->json($post);
     }
 }

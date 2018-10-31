@@ -20,7 +20,9 @@ class CommentController extends Controller
 
         ]);
 
-        return response()->json('Comment created!');
+        $newComment = Comment::select('id','comment_text')->latest()->first();
+
+        return response()->json($comment);
     }
 
     public function update(Request $request , $id) {
@@ -32,12 +34,14 @@ class CommentController extends Controller
             'comment_text' => $validatedData['comment'],
         ]);
 
-        return response()->json('Comment edited!');
+        $editedComment = Comment::where('id',$id)->get();
+
+        return response()->json($comment);
     }
 
     public function delete($id) {
         $comment = Comment::where('id',$id)->delete();
 
-        return response()->json('Comment deleted!');
+        return response()->json($comment);
     }
 }
