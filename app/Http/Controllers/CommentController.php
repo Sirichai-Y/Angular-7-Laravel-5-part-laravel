@@ -11,37 +11,34 @@ class CommentController extends Controller
 
     public function create(Request $request) {
         $validatedData = $request->validate([
-            'comment' => 'required'
+            'comment_text' => 'required'
         ]);
 
         $comment = Comment::create([
-            'comment_text' => $validatedData['comment'],
+            'comment_text' => $validatedData['comment_text'],
             'post_id' => $request->post_id
 
         ]);
 
-        $newComment = Comment::select('id','comment_text')->latest()->first();
-
-        return response()->json($comment);
+        return response()->json(Comment::select('id','comment_text')->latest()->first());
     }
 
     public function update(Request $request , $id) {
         $validatedData = $request->validate([
-            'comment' => 'required'
+            'comment_text' => 'required'
         ]);
 
         $comment = Comment::where('id',$id)->update([
-            'comment_text' => $validatedData['comment'],
+            'comment_text' => $validatedData['comment_text'],
         ]);
 
-        $editedComment = Comment::where('id',$id)->get();
-
-        return response()->json($comment);
+        return response()->json(Comment::select('id','comment_text')->orderBy('updated_at', 'asc')->first());
     }
 
     public function delete($id) {
+        $deleted = Comment::select('id','comment_text')->where('id',$id)->get();
         $comment = Comment::where('id',$id)->delete();
 
-        return response()->json($comment);
+        return response()->json($deleted);
     }
 }
