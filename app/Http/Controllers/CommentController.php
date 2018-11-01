@@ -32,13 +32,12 @@ class CommentController extends Controller
             'comment_text' => $validatedData['comment_text'],
         ]);
 
-        return response()->json(Comment::select('id','comment_text')->orderBy('updated_at', 'asc')->first());
+        return response()->json($comment);
     }
 
     public function delete($id) {
-        $deleted = Comment::select('id','comment_text')->where('id',$id)->get();
         $comment = Comment::where('id',$id)->delete();
 
-        return response()->json($deleted);
+        return response()->json($comment);
     }
 }
