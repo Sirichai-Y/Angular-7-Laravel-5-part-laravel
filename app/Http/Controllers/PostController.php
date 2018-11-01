@@ -57,10 +57,9 @@ class PostController extends Controller
     }
 
     public function delete($id) { // ฟังก์ชันลบ Post ส่วน $id คือ ข้อมูลทาง url
-        $deleted = Post::select('id','post_text')->where('id',$id)->get();
         $post = Post::where('id',$id)->delete(); // คำสั่ง delete คือ ลบข้อมูลออกจาก table ที่เชื่อมต่อกับ model ของเรา
         $comment = Comment::where('post_id',$id)->delete(); 
 
-        return response()->json($deleted);
+        return response()->json($post||$comment);
     }
 }
