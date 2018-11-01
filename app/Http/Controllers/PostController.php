@@ -53,7 +53,7 @@ class PostController extends Controller
             'post_text' => $validatedData['post_text']
         ]);
 
-        return response()->json(Post::select('id','post_text')->orderBy('updated_at', 'asc')->first());
+        return response()->json($post);
     }
 
     public function delete($id) { // ฟังก์ชันลบ Post ส่วน $id คือ ข้อมูลทาง url
